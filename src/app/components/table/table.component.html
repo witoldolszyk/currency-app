@@ -1,0 +1,119 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="symbol">
+    <th mat-header-cell *matHeaderCellDef> Symbol </th>
+    <td mat-cell *matCellDef="let group">
+      <mat-icon *ngIf="!group.showDetails">arrow_downward</mat-icon>
+      <mat-icon *ngIf="group.showDetails">arrow_upward</mat-icon>
+      <button  class="styled-button" (click)="toggleDetails(group)">
+        {{group.symbol}}
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="orderId">
+    <th mat-header-cell *matHeaderCellDef> Order ID </th>
+    <td mat-cell *matCellDef="let group">
+      <ng-container>
+        <div (click)="toggleDetails(group)">--</div>
+      </ng-container>
+      <ng-container *ngIf="group.showDetails">
+        <div *ngFor="let order of group.orders">
+          {{order.id}}<br>
+        </div>
+      </ng-container>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="side">
+    <th mat-header-cell *matHeaderCellDef> Side </th>
+    <td mat-cell *matCellDef="let group">
+      <ng-container>
+        <div (click)="toggleDetails(group)">--</div>
+      </ng-container>
+      <ng-container *ngIf="group.showDetails">
+        <div *ngFor="let order of group.orders">
+          {{order.side}}<br>
+        </div>
+      </ng-container>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="size">
+    <th mat-header-cell *matHeaderCellDef> Size </th>
+    <td mat-cell *matCellDef="let group">
+      <ng-container>
+        <div (click)="toggleDetails(group)">{{group.size | number:'1.2-2'}}</div>
+      </ng-container>
+      <ng-container *ngIf="group.showDetails">
+        <div *ngFor="let order of group.orders">
+          {{order.size | number:'1.2-2'}}<br>
+        </div>
+      </ng-container>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="openTime">
+    <th mat-header-cell *matHeaderCellDef> Open Time </th>
+    <td mat-cell *matCellDef="let group">
+      <ng-container>
+        <div (click)="toggleDetails(group)">--</div>
+      </ng-container>
+      <ng-container *ngIf="group.showDetails">
+        <div *ngFor="let order of group.orders">
+          {{order.openTime | date:'dd.MM.yyyy HH:mm:ss'}}<br>
+        </div>
+      </ng-container>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="openPrice">
+    <th mat-header-cell *matHeaderCellDef> Open Price </th>
+    <td mat-cell *matCellDef="let group">
+      <ng-container>
+        <div (click)="toggleDetails(group)">{{group.openPrice | number:'1.2-2'}}</div>
+      </ng-container>
+      <ng-container *ngIf="group.showDetails">
+        <div *ngFor="let order of group.orders">
+          {{order.openPrice | number:'1.2-2'}}<br>
+        </div>
+      </ng-container>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="swap">
+    <th mat-header-cell *matHeaderCellDef> Swap </th>
+    <td mat-cell *matCellDef="let group">
+      <ng-container (click)="toggleDetails(group)">{{group.swap | number:'1.2-2'}}</ng-container>
+      <ng-container *ngIf="group.showDetails">
+        <div *ngFor="let order of group.orders">
+          {{order.swap | number:'1.2-2'}}<br>
+        </div>
+      </ng-container>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="profit">
+    <th mat-header-cell *matHeaderCellDef> Profit </th>
+    <td mat-cell *matCellDef="let group">
+      <ng-container>
+        <span [ngClass]="{'profit-positive': group.profit > 0, 'profit-negative': group.profit < 0}">{{group.profit | number:'1.2-2'}}</span>
+        <button mat-icon-button color="warn" (click)="deleteGroup(group.symbol)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </ng-container>
+      <ng-container *ngIf="group.showDetails">
+        <div *ngFor="let order of group.orders">
+          <span [ngClass]="{'profit-positive': group.profit > 0, 'profit-negative': group.profit < 0}">{{order.profit | number:'1.2-2'}}</span>
+          <button mat-icon-button color="warn" (click)="deleteOrder(order, group)">
+            <mat-icon>close</mat-icon>
+          </button><br>
+        </div>
+      </ng-container>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>

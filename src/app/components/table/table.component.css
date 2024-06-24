@@ -1,0 +1,36 @@
+table {
+    width: 100%;
+}
+
+th {
+    background-color: var(--row-background-color) !important;
+    color: var(--text-color) !important;
+}
+
+td {
+    background-color: var(--row-background-color) !important;
+    color: var(--text-color) !important;
+}
+
+td:hover {
+    background-color: var(--row-hover-background-color) !important;
+}
+
+.profit-positive {
+    color: var(--profit-positive-color);
+}
+
+.profit-negative {
+    color: var(--profit-negative-color);
+}
+
+.styled-button {
+    background-color: #1976d2 !important; 
+    color: white !important; 
+    border-radius: 5px; 
+    padding: 5px 10px; 
+}
+  
+.styled-button:hover {
+    background-color: #115293 !important; 
+ }
