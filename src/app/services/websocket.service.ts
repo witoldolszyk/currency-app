@@ -19,7 +19,9 @@ export class WebSocketService {
 
   getMessages(): Observable<any> {
     return this.socket$.pipe(
-      map(response => response.d)
+      map(response => {
+        return response.d;
+      })
     );
   }
 }

@@ -1,13 +1,24 @@
 import { TestBed } from '@angular/core/testing';
+import { WebSocketService } from './websocket.service';
+import { WebSocketSubject } from 'rxjs/webSocket';
+import { of } from 'rxjs';
 
-import { WebsocketService } from './websocket.service';
-
-describe('WebsocketService', () => {
-  let service: WebsocketService;
+describe('WebSocketService', () => {
+  let service: WebSocketService;
+  let mockWebSocket: jasmine.SpyObj<WebSocketSubject<any>>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(WebsocketService);
+    mockWebSocket = jasmine.createSpyObj('WebSocketSubject', ['next', 'pipe']);
+    mockWebSocket.pipe.and.returnValue(of({ d: 'test message' }));
+
+    TestBed.configureTestingModule({
+      providers: [
+        { provide: WebSocketSubject, useValue: mockWebSocket },
+        WebSocketService
+      ]
+    });
+
+    service = TestBed.inject(WebSocketService);
   });
 
   it('should be created', () => {

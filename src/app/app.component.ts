@@ -8,7 +8,7 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 export class AppComponent implements OnInit {
   title = 'cryptocurrency-app';
 
-  constructor(private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2) { }
 
   ngOnInit(): void {
     const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');

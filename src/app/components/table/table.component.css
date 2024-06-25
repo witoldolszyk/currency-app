@@ -25,12 +25,12 @@ td:hover {
 }
 
 .styled-button {
-    background-color: #1976d2 !important; 
-    color: white !important; 
-    border-radius: 5px; 
-    padding: 5px 10px; 
+    background-color: #1976d2 !important;
+    color: white !important;
+    border-radius: 5px;
+    padding: 5px 10px;
 }
-  
+
 .styled-button:hover {
-    background-color: #115293 !important; 
- }
+    background-color: #115293 !important;
+}
